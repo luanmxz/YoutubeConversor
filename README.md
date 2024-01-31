@@ -7,3 +7,5 @@ To execute locally, use ThunderClient or Postman for example:
 - }
 
 You can download more than one video at once, separating the URL of each one with a comma.
+
+*Change download folder in the config.properties
