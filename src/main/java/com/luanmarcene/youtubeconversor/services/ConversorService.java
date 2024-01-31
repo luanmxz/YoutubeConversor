@@ -1,6 +1,9 @@
 package com.luanmarcene.youtubeconversor.services;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,17 @@ public class ConversorService {
 
     public void convertAndDownloadVideo(String url) {
 
-        String outputFolder = "C:\\Users\\luanm\\Downloads\\YoutubeVideos";
+        Properties properties = new Properties();
+
+        try {
+            FileInputStream fs = new FileInputStream(
+                    "src\\main\\resources\\config.properties");
+            properties.load(fs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String outputFolder = properties.getProperty("outputfolder");
         YoutubeDownloader downloader = new YoutubeDownloader();
 
         String videoID = extractVideoIDFromUrl(url);
